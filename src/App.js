@@ -70,7 +70,7 @@ onButtonSubmit = () => {
 }
 
 onRouteChange = (route) => {
-  this.setState({route: 'route'});
+  this.setState({route: route});
 }
 
   render() {
@@ -80,12 +80,12 @@ onRouteChange = (route) => {
      <Navigation onRouteChange={this.onRouteChange}/>
      { this.state.route === 'home'  
       ? <div>
-      <Logo />
-      <Rank />
-      <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit}/>
-      <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl}/>
+        <Logo />
+        <Rank />
+        <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit}/>
+        <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl}/>
      </div> 
-      :(
+      : (
         this.state.route === 'signin'
         ? <SignIn onRouteChange={this.onRouteChange}/> 
         : <Register onRouteChange={this.onRouteChange}/>
