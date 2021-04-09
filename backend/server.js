@@ -86,5 +86,5 @@ app.put('/image', (req, res) => {
 })
 
 app.listen(3000, () => {
-    console.log('aaaaaaaaa')
+    console.log('Server started')
 });
