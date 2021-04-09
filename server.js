@@ -10,7 +10,7 @@ app.use(cors());
 const database = {
     users: [
         {
-            id: '123',
+            id: '1',
             name: 'John',
             email: 'john@gmail.com',
             password: 'cookies',
@@ -18,7 +18,7 @@ const database = {
             joined: new Date()
         },
         {
-            id: '124',
+            id: '2',
             name: 'Saly',
             email: 'saly@gmail.com',
             password: 'bananas',
@@ -46,7 +46,7 @@ app.post('/signin', (req, res) => {
 app.post('/register', (req, res) => {
     const { email, name, password } = req.body;
     database.users.push({
-            id: '125',
+            id: database.users.length + 1,
             name: name,
             email: email,
             password: password,
