@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import Particles from 'react-particles-js';
 import Clarifai from "clarifai";
-import Navigation from "./components/navigation/Navigation";
-import SignIn from "./components/signIn/SignIn";
-import Register from "./components/register/Register";
-import Logo from "./components/logo/Logo";
-import ImageLinkForm from "./components/imageLinkForm/ImageLinkForm";
-import Rank from './components/rank/Rank';
-import FaceRecognition from './components/faceRecognition/FaceRecignition';
+import Navigation from "./components/Navigation/Navigation";
+import SignIn from "./components/SignIn/SignIn";
+import Register from "./components/Register/Register";
+import Logo from "./components/Logo/Logo";
+import ImageLinkForm from "./components/ImageLinkForm/ImageLinkForm";
+import Rank from './components/Rank/Rank';
+import FaceRecognition from './components/FaceRecognition/FaceRecignition';
 import './App.css';
 
 const app = new Clarifai.App({
@@ -89,7 +89,19 @@ onButtonSubmit = () => {
 
 onRouteChange = (route) => {
   if (route === 'signout') {
-    this.setState({isSignedIn: false})
+    this.setState({
+      isSignedIn: false, 
+      input: '',
+      imageUrl: '',
+      box: {},
+      route: 'signin',
+      user: {
+        id: '',
+        name: '',
+        email: '',
+        entries: 0,
+        joined: ''
+    }})
   } else if (route === 'home') {
     this.setState({isSignedIn: true})
   }
