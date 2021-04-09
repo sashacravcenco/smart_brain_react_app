@@ -30,6 +30,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      isImageLoading: false,
       input: '',
       imageUrl: '',
       box: {},
@@ -78,7 +79,7 @@ onInputChange = (event) => {
 }
 
 onButtonSubmit = () => {
-  this.setState({imageUrl: this.state.input})
+  this.setState({imageUrl: this.state.input, isImageLoading: true})
   app.models
     .predict(
       Clarifai.FACE_DETECT_MODEL, 
@@ -97,7 +98,7 @@ onButtonSubmit = () => {
           this.setState({user: {
             ...this.state.user,
             entries: count
-          }})
+          }, isImageLoading: false})
         })
       }
       this.displayFaceBox(this.calculateFaceLocation(response))
@@ -109,6 +110,7 @@ onRouteChange = (route) => {
   if (route === 'signout') {
     this.setState({
       isSignedIn: false, 
+      isImageLoading: false,
       input: '',
       imageUrl: '',
       box: {},
@@ -136,7 +138,7 @@ onRouteChange = (route) => {
           ? <div>
             <Logo />
             <Rank name={this.state.user.name} entries={this.state.user.entries} />
-            <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit}/>
+            <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit} isImageLoading={this.state.isImageLoading}/>
             <FaceRecognition box={box} imageUrl={imageUrl}/>
         </div> 
           : (
